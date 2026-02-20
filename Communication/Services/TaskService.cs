@@ -1,12 +1,12 @@
 namespace SimpleTaskManager.Communication.Repository;
 
 using SimpleTaskManager.Communication.Enum;
-using SimpleTaskManager.Communication.Responses;
+using SimpleTaskManager.Communication.Requests;
 using System;
 
 public class TaskService
 {
-    public void ValidateTask(RequestTaskJson task)
+    public void ValidateTask(RequestTaskJson task, bool isCreation = false)
     {
         if (String.IsNullOrEmpty(task.Name))
         {
@@ -15,6 +15,10 @@ public class TaskService
         if (task.Name.Length > 100)
         {
             throw new ArgumentException("Length must be less than 100 char");
+        }
+        if (task.Description?.Length > 500)
+        {
+            throw new ArgumentException("Description must be less than 500 characters");
         }
         var validStatus = Enum.IsDefined(typeof(Status), task.Status);
         if (!validStatus)
@@ -27,7 +31,7 @@ public class TaskService
         {
             throw new ArgumentException("Priority is invalid.");
         }
-        if (task.DueDate <= DateTime.Now)
+        if (isCreation && task.DueDate <= DateTime.Now)
         {
             throw new ArgumentException("Date must be greater than now");
         }

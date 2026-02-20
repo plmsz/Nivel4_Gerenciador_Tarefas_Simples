@@ -1,6 +1,6 @@
 using SimpleTaskManager.Communication.Enum;
 
-namespace SimpleTaskManager.Communication.Responses;
+namespace SimpleTaskManager.Communication.Requests;
 
 public class RequestTaskJson
 {

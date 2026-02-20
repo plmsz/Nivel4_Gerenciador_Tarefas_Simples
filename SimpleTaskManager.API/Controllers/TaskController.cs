@@ -2,6 +2,7 @@
 using SimpleTaskManager.Application.UseCases.Task;
 using SimpleTaskManager.Communication.Repository;
 using SimpleTaskManager.Communication.Responses;
+using SimpleTaskManager.Communication.Requests;
 
 namespace SimpleTaskManager.API.Controllers;
 
@@ -55,7 +56,7 @@ public class TaskController : ControllerBase
     {
         try
         {
-            _taskService.ValidateTask(payload);
+            _taskService.ValidateTask(payload, isCreation: true);
 
             var useCase = new PostTask(_repository);
             var response = useCase.Execute(payload);

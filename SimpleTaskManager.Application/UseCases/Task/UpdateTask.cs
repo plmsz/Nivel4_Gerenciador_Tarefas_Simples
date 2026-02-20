@@ -1,5 +1,5 @@
 using SimpleTaskManager.Communication.Repository;
-using SimpleTaskManager.Communication.Responses;
+using SimpleTaskManager.Communication.Requests;
 
 namespace SimpleTaskManager.Application.UseCases.Task;
 
